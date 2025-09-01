@@ -8,7 +8,7 @@ const Navbar = () => {
       <div className='flex-1'>
         <Link to='' className='flex gap-2 items-center'>
           <img className='w-auto h-7' src={logo} alt='Logo' style={{width:"40px", height:"40px"}} />
-          <span className='font-bold font-serif'>skill-loom-job</span>
+          <span className='font-bold font-serif'>Skill Loom Job</span>
         </Link>
       </div>
       <div className='flex-none'>
@@ -19,10 +19,8 @@ const Navbar = () => {
           <li>
             <Link to=''>All Jobs</Link>
           </li>
-
-  
             <li>
-              <Link to=''>Login</Link>
+              <Link to='/login'>Login</Link>
             </li>
    
         </ul>
@@ -61,8 +59,7 @@ const Navbar = () => {
                 <Link to=''>Bid Requests</Link>
               </li>
               <li className='mt-2'>
-                <button
-                
+                <button      
                   className='bg-gray-200 block text-center'
                 >
                   Logout
@@ -70,7 +67,6 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-   
       </div>
     </div>
   )
