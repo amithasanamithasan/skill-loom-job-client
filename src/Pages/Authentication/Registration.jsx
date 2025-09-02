@@ -1,8 +1,28 @@
-import { Link} from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 import bgImg from '../../assets/images/depositphotos.jpg'
 import logo from '../../assets/images/logo.png'
+import { useContext } from 'react';
+import { AuthContext } from '../../Provider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Registration = () => {
+    const {signInWithGoogle}=useContext(AuthContext);
+
+    const navigate=useNavigate();
+
+      const handleGoogleSignIn= async ()=>{ 
+    try{
+      const result=await signInWithGoogle();
+      const loggedUser=result.user;
+      toast.success('Login Successful');
+      console.log(loggedUser);
+      navigate('/');
+    }
+    catch(error){
+      console.log(error);
+      toast.error(error.message);
+    }
+  }
   return (
     <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
       <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
@@ -13,7 +33,7 @@ const Registration = () => {
           <p className='mt-3 text-xl text-center text-gray-600 '>
             Get Your Free Account Now.
           </p>
-          <div
+          <div onClick={handleGoogleSignIn}
             className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '
           >
             <div className='px-4 py-2'>
