@@ -7,24 +7,27 @@ import { AuthContext } from '../../Provider/AuthProvider'
 import toast from 'react-hot-toast'
 
 const Login = () => {
-  const {    signIn, signInWithGoogle}=useContext(AuthContext);
+  const {signIn, signInWithGoogle}=useContext(AuthContext);
   const navigate=useNavigate();
 
-  const handleLogin=(event)=>{
-    event.preventDefault();
-    const form=event.target;
+  const handleLogin= async (e)=>{
+    e.preventDefault();
+    const form=e.target;
     const email=form.email.value;
     const password=form.password.value;
     console.log(email , password);
-    signIn(email, password)
-    .then(result=>{
+    try{
+      const result=await signIn(email,password);
+      console.log(result);
       const loggedUser=result.user;
+      toast.success('Login Successful');
       console.log(loggedUser);
-      form.reset();
-    })
-    .catch(error=>{
+      navigate('/');
+    }
+    catch(error){
       console.log(error);
-    })
+      toast.error(error.message);
+    }
   }
   const handleGoogleSignIn= async ()=>{ 
     try{
@@ -65,7 +68,6 @@ const Login = () => {
           </p>
 
           <div onClick={handleGoogleSignIn}
-           
             className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '
           >
             <div className='px-4 py-2'>
@@ -103,7 +105,7 @@ const Login = () => {
 
             <span className='w-1/5 border-b dark:border-gray-400 lg:w-1/4'></span>
           </div>
-          <form>
+          <form onSubmit={handleLogin}>
             <div className='mt-4'>
               <label
                 className='block mb-2 text-sm font-medium text-gray-600 '
@@ -139,7 +141,7 @@ const Login = () => {
               />
             </div>
             <div className='mt-6'>
-              <button onClick={handleLogin}
+              <button 
                 type='submit'
                 className='w-full px-6 py-3  cursor-pointer text-sm font-medium tracking-wide text-black
                  capitalize transition-colors duration-300 transform bg-gray-300 rounded-lg
