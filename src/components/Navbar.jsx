@@ -50,8 +50,11 @@ navigate('/login');
               role='button'
               className='btn btn-ghost btn-circle avatar'
             >
-              <div title="" className='w-10 rounded-full'>
+              {/* Picture social login image hover  display name  */}
+              <div 
+              title={user?.displayName} className='w-10 rounded-full'>
                 <img
+                // google profile photo image 
                   referrerPolicy='no-referrer'
                   alt='User Profile Photo'
                   src={user.photoURL ? user.photoURL : 'https://i.ibb.co/4pDNDk1/avatar.png'}
