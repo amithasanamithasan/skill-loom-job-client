@@ -1,8 +1,10 @@
 
 import { Link } from 'react-router-dom'
 import logo from '../assets/images/Siri Animation.gif'
+import { useContext } from 'react'
+import { AuthContext } from '../Provider/AuthProvider'
 const Navbar = () => {
-
+const { user }=useContext(AuthContext);
   return (
     <div className='navbar shadow-sm container px-4 mx-auto border rounded-full bg-gray-100'>
       <div className='flex-1'>
@@ -19,14 +21,16 @@ const Navbar = () => {
           <li>
             <Link to=''>All Jobs</Link>
           </li>
+          { !user && ( 
             <li>
               <Link to='/login'>Login</Link>
             </li>
+            )}
    
         </ul>
 
     
-          <div className='dropdown dropdown-end z-50'>
+        {user && (<div className='dropdown dropdown-end z-50'>
             <div
               tabIndex={0}
               role='button'
@@ -58,15 +62,18 @@ const Navbar = () => {
               <li>
                 <Link to=''>Bid Requests</Link>
               </li>
-              <li className='mt-2'>
+                 
+                <li className='mt-2'>
                 <button      
                   className='bg-gray-200 block text-center'
                 >
                   Logout
                 </button>
               </li>
+           
             </ul>
           </div>
+        )}
       </div>
     </div>
   )
