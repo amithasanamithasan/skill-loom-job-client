@@ -10,13 +10,13 @@ const { user }=useContext(AuthContext);
       <div className='flex-1'>
         <Link to='' className='flex gap-2 items-center'>
           <img className='w-auto h-7' src={logo} alt='Logo' style={{width:"40px", height:"40px"}} />
-          <span className='font-bold font-serif'>Skill Loom Job</span>
+          <span className='font-bold font-serif'> <Link to='/'> Skill Loom Job</Link></span>
         </Link>
       </div>
       <div className='flex-none'>
         <ul className='menu menu-horizontal px-1'>
           <li>
-            <Link to=''>Home</Link>
+            <Link to='/'>Home</Link>
           </li>
           <li>
             <Link to=''>All Jobs</Link>
