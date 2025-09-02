@@ -1,10 +1,24 @@
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/images/Siri Animation.gif'
 import { useContext } from 'react'
 import { AuthContext } from '../Provider/AuthProvider'
+import toast from 'react-hot-toast'
 const Navbar = () => {
-const { user }=useContext(AuthContext);
+const { user,logOut }=useContext(AuthContext);
+const navigate=useNavigate();
+
+const handleLogOut=async()=>{
+  try{
+    await logOut();
+    toast.success('Logout Successful');
+navigate('/login');
+    }catch(error){
+    console.log(error);
+  }
+
+}
+
   return (
     <div className='navbar shadow-sm container px-4 mx-auto border rounded-full bg-gray-100'>
       <div className='flex-1'>
@@ -64,7 +78,7 @@ const { user }=useContext(AuthContext);
               </li>
                  
                 <li className='mt-2'>
-                <button      
+                <button onClick={handleLogOut}       
                   className='bg-gray-200 block text-center'
                 >
                   Logout
