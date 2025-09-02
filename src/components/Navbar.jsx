@@ -40,7 +40,7 @@ const { user }=useContext(AuthContext);
                 <img
                   referrerPolicy='no-referrer'
                   alt='User Profile Photo'
-                  src=""
+                  src={user.photoURL ? user.photoURL : 'https://i.ibb.co/4pDNDk1/avatar.png'}
                 />
               </div>
             </div>

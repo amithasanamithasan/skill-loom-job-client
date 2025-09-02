@@ -1,9 +1,50 @@
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import bgImg from '../../assets/images/istockphoto.jpg'
 import logo from '../../assets/images/Siri Animation.gif'
+import { useContext } from 'react'
+import { AuthContext } from '../../Provider/AuthProvider'
+import toast from 'react-hot-toast'
 
 const Login = () => {
+  const {    signIn, signInWithGoogle}=useContext(AuthContext);
+  const navigate=useNavigate();
+
+  const handleLogin=(event)=>{
+    event.preventDefault();
+    const form=event.target;
+    const email=form.email.value;
+    const password=form.password.value;
+    console.log(email , password);
+    signIn(email, password)
+    .then(result=>{
+      const loggedUser=result.user;
+      console.log(loggedUser);
+      form.reset();
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
+  const handleGoogleSignIn= async ()=>{ 
+    try{
+      const result=await signInWithGoogle();
+      const loggedUser=result.user;
+      toast.success('Login Successful');
+      console.log(loggedUser);
+      navigate('/');
+    }
+    catch(error){
+      console.log(error);
+      toast.error(error.message);
+    }
+  }
+
+    
+   
+  
+  
+  
   return (
     <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
       <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
@@ -23,7 +64,7 @@ const Login = () => {
             Welcome back!
           </p>
 
-          <div
+          <div onClick={handleGoogleSignIn}
            
             className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '
           >
@@ -48,7 +89,7 @@ const Login = () => {
               </svg>
             </div>
 
-            <span className='w-5/6 px-4 py-3 font-bold text-center'>
+            <span  className='w-5/6 px-4 py-3 font-bold text-center'>
               Sign in with Google
             </span>
           </div>
@@ -98,7 +139,7 @@ const Login = () => {
               />
             </div>
             <div className='mt-6'>
-              <button
+              <button onClick={handleLogin}
                 type='submit'
                 className='w-full px-6 py-3  cursor-pointer text-sm font-medium tracking-wide text-black
                  capitalize transition-colors duration-300 transform bg-gray-300 rounded-lg
