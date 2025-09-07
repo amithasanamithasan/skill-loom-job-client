@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@egjs/flicking-plugins": "^4.7.1",
+    "@egjs/react-flicking": "^4.14.0",
     "@mui/material": "^7.3.1",
     "@tailwindcss/vite": "^4.1.12",
     "axios": "^1.11.0",
@@ -22,6 +24,7 @@
     "react-particles": "^2.12.2",
     "react-password-strength-bar": "^0.4.1",
     "react-router-dom": "^7.8.2",
+    "react-tabs": "^6.1.0",
     "tailwindcss": "^4.1.12"
   },
   "devDependencies": {

@@ -1,9 +1,12 @@
 import React from 'react';
+import Carousel from '../components/Carousel';
+import TabsCategory from '../components/TabsCategory';
 
 const Home = () => {
     return (
-        <div>
-            <h1>Home Pagess</h1>
+        <div className='min-h-screen '>
+        <Carousel/>
+        <TabsCategory/>
         </div>
     );
 };
