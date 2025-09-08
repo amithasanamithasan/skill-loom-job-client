@@ -42,8 +42,8 @@ const JobCard = () => {
 
       {/* Footer / Button */}
       <div className="px-5 py-3 border-t bg-gray-50 rounded-b-2xl">
-        <button className="w-full py-2 text-sm font-semibold text-white bg-blue-600 rounded-xl hover:bg-blue-700 transition-colors">
-          View Details
+       <button className="w-full py-2 text-sm font-semibold text-black border border-black rounded-lg transition-colors hover:bg-black hover:text-white">
+            View Details
         </button>
       </div>
     </Link>
