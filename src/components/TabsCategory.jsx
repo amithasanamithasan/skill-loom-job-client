@@ -2,6 +2,7 @@ import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./tabs.css"; // custom styling
+import JobCard from "./JobCard";
 
 const TabsCategory = () => {
   return (
@@ -32,12 +33,7 @@ const TabsCategory = () => {
         {/* Tab Panels */}
         <div className="mt-8">
           <TabPanel>
-            <h3 className="text-xl font-extralight mb-4">IT & Software Jobs</h3>
-            <ul className="space-y-2">
-              <li>Frontend Developer</li>
-              <li>Backend Developer</li>
-              <li>Fullstack Engineer</li>
-            </ul>
+          <JobCard/>
           </TabPanel>
           <TabPanel>
             <h3 className="text-xl font-extralight mb-4">Design Jobs</h3>
